@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }} - Bobby个人网站{% endblock %}
+
+{% block content %}
+<div class="bg-gradient-to-r from-blue-600 to-purple-700 text-white py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center">
+            <a href="{{ url_for('home') }}" class="text-white hover:text-blue-200 mr-4 transition-colors">
+                <i class="fas fa-arrow-left text-xl"></i>
+            </a>
+            <div>
+                <h1 class="text-4xl font-bold mb-2">{{ title }}</h1>
+                <p class="text-blue-100">{{ description }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+        <div class="bg-gray-50 px-6 py-4 border-b border-gray-200">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                <div class="flex items-center">
+                    <i class="fas fa-file-pdf text-red-600 text-2xl mr-3"></i>
+                    <div>
+                        <h2 class="text-xl font-semibold text-gray-800">{{ filename }}</h2>
+                        <p class="text-gray-600 text-sm">PDF文档预览</p>
+                    </div>
+                </div>
+                <div class="flex flex-col sm:flex-row gap-3">
+                    <button onclick="toggleFullscreen()" 
+                            class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium">
+                        <i class="fas fa-expand mr-2"></i>全屏预览
+                    </button>
+                    <a href="{{ url_for('download_pdf', filename=filename) }}" 
+                       class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors text-sm font-medium text-center">
+                        <i class="fas fa-download mr-2"></i>下载文档
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="pdf-container">
+            <div id="loading" class="flex items-center justify-center py-20">
+                <div class="text-center">
+                    <div class="animate-spin rounded-full h-16 w-16 border-b-2 border-blue-600 mx-auto mb-4"></div>
+                    <p class="text-gray-600">正在加载PDF文档...</p>
+                </div>
+            </div>
+            
+            <embed id="pdf-embed" 
+                   src="{{ url_for('serve_pdf', filename=filename) }}" 
+                   type="application/pdf" 
+                   width="100%" 
+                   height="800px"
+                   style="display: none;"
+                   onload="hideLoading()">
+            
+            <div id="pdf-error" style="display: none;" class="text-center py-20">
+                <div class="text-gray-600">
+                    <i class="fas fa-exclamation-triangle text-4xl mb-4 text-yellow-500"></i>
+                    <p class="text-lg mb-4">无法预览此PDF文档</p>
+                    <p class="text-sm mb-6">您的浏览器可能不支持PDF预览，请下载文档后查看</p>
+                    <a href="{{ url_for('download_pdf', filename=filename) }}" 
+                       class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors">
+                        <i class="fas fa-download mr-2"></i>下载查看
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-8 bg-blue-50 rounded-lg p-6">
+        <div class="flex items-start">
+            <div class="flex-shrink-0">
+                <i class="fas fa-info-circle text-blue-600 text-xl"></i>
+            </div>
+            <div class="ml-3">
+                <h3 class="text-lg font-semibold text-blue-900 mb-2">使用提示</h3>
+                <ul class="text-blue-800 space-y-1 text-sm">
+                    <li>• 点击"全屏预览"按钮可以全屏查看PDF</li>
+                    <li>• 如果预览有问题，可以直接下载文档查看</li>
+                    <li>• 支持鼠标滚轮缩放和拖拽浏览</li>
+                    <li>• 按ESC键可以退出全屏模式</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function hideLoading() {
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('pdf-embed').style.display = 'block';
+}
+
+function toggleFullscreen() {
+    const embed = document.getElementById('pdf-embed');
+    if (!document.fullscreenElement) {
+        embed.requestFullscreen().catch(err => {
+            console.log('无法进入全屏模式:', err);
+        });
+    } else {
+        document.exitFullscreen();
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const embed = document.getElementById('pdf-embed');
+    
+    setTimeout(function() {
+        if (document.getElementById('loading').style.display !== 'none') {
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('pdf-error').style.display = 'block';
+        }
+    }, 10000);
+    
+    embed.onerror = function() {
+        document.getElementById('loading').style.display = 'none';
+        document.getElementById('pdf-error').style.display = 'block';
+    };
+});
+</script>
+{% endblock %}

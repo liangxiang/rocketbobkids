@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+
+{% block title %}Programs - RocketBobKids{% endblock %}
+
+{% block content %}
+<div class="bg-gradient-to-r from-green-600 to-blue-700 text-white py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h1 class="text-4xl font-bold mb-4">Our Programs</h1>
+        <p class="text-xl text-green-100">Tailored enrichment activities for every age and interest</p>
+    </div>
+</div>
+
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        {% for program in programs %}
+        <div class="bg-white rounded-xl shadow-lg hover:shadow-2xl transform hover:scale-102 transition-all duration-300">
+            <div class="p-8">
+                <div class="flex items-center mb-6">
+                    <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white text-2xl">
+                        <i class="fas {{ program.icon }}"></i>
+                    </div>
+                    <div class="ml-4">
+                        <h3 class="text-2xl font-bold text-gray-800">{{ program.name }}</h3>
+                        <p class="text-blue-600 font-medium">{{ program.age_group }}</p>
+                    </div>
+                </div>
+                
+                <p class="text-gray-700 mb-6 leading-relaxed">{{ program.description }}</p>
+                
+                <div class="mb-6">
+                    <h4 class="text-lg font-semibold text-gray-800 mb-3">Key Features:</h4>
+                    <ul class="space-y-2">
+                        {% for feature in program.features %}
+                        <li class="flex items-center text-gray-600">
+                            <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                            {{ feature }}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                
+                <div class="flex flex-col sm:flex-row gap-3">
+                    {% if program.name == 'Soccer' %}
+                        <a href="{{ url_for('soccer') }}" 
+                           class="flex-1 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors text-center font-medium">
+                            <i class="fas fa-info-circle mr-2"></i>Learn More
+                        </a>
+                    {% elif program.name == 'Art Classes' %}
+                        <a href="{{ url_for('art') }}" 
+                           class="flex-1 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors text-center font-medium">
+                            <i class="fas fa-info-circle mr-2"></i>Learn More
+                        </a>
+                    {% elif program.name == 'Gymnastics' %}
+                        <a href="{{ url_for('gymnastics') }}" 
+                           class="flex-1 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors text-center font-medium">
+                            <i class="fas fa-info-circle mr-2"></i>Learn More
+                        </a>
+                    {% elif program.name == 'Basketball' %}
+                        <a href="{{ url_for('basketball') }}" 
+                           class="flex-1 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors text-center font-medium">
+                            <i class="fas fa-info-circle mr-2"></i>Learn More
+                        </a>
+                    {% elif program.name == 'Swimming' %}
+                        <a href="{{ url_for('swimming') }}" 
+                           class="flex-1 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors text-center font-medium">
+                            <i class="fas fa-info-circle mr-2"></i>Learn More
+                        </a>
+                    {% endif %}
+                    <a href="tel:(650) 569-1741" 
+                       class="flex-1 bg-gray-600 text-white px-6 py-3 rounded-lg hover:bg-gray-700 transition-colors text-center font-medium">
+                        <i class="fas fa-phone mr-2"></i>Call Now
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="mt-16 bg-blue-50 rounded-xl p-8">
+        <div class="text-center">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Why Choose RocketBobKids?</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-users text-blue-600 text-xl"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Expert Instructors</h3>
+                    <p class="text-gray-600">Our dedicated team of professionals brings extensive training and unique backgrounds to provide the best instruction possible.</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-star text-purple-600 text-xl"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Personalized Approach</h3>
+                    <p class="text-gray-600">We tailor our programs to align with your child's unique needs, interests, and developmental goals.</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-shield-alt text-green-600 text-xl"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Safe Environment</h3>
+                    <p class="text-gray-600">We provide a supportive and stimulating environment where your child can safely explore new passions.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-16 text-center">
+        <h2 class="text-3xl font-bold text-gray-800 mb-4">Ready to Enroll?</h2>
+        <p class="text-gray-600 mb-8 text-lg">Contact us today to learn more about our programs and find the perfect fit for your child.</p>
+        <div class="flex flex-col sm:flex-row justify-center gap-4">
+            <a href="mailto:RocketBobKids02@gmail.com" class="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors font-medium">
+                <i class="fas fa-envelope mr-2"></i>Send Email
+            </a>
+            <a href="tel:(650) 569-1741" class="bg-green-600 text-white px-8 py-3 rounded-lg hover:bg-green-700 transition-colors font-medium">
+                <i class="fas fa-phone mr-2"></i>Call (650) 569-1741
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,200 @@
+{% extends "base.html" %}
+
+{% block title %}Contact Us - RocketBobKids{% endblock %}
+
+{% block content %}
+<div class="bg-gradient-to-r from-teal-600 to-blue-700 text-white py-16" style="background: linear-gradient(to right, #0d9488, #1d4ed8);">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h1 class="text-4xl font-bold mb-4">Contact Us</h1>
+        <p class="text-xl text-teal-100">Get in touch to learn more about our programs</p>
+    </div>
+</div>
+
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+        <div>
+            <h2 class="text-3xl font-bold text-gray-800 mb-8">Get In Touch</h2>
+            
+            <div class="space-y-6">
+                <div class="bg-blue-50 rounded-lg p-6">
+                    <div class="flex items-center mb-3">
+                        <i class="fas fa-envelope text-blue-600 text-xl mr-4"></i>
+                        <h3 class="text-lg font-semibold text-gray-800">Email</h3>
+                    </div>
+                    <a href="mailto:{{ contact_info.email }}" class="text-blue-600 hover:text-blue-700 font-medium text-lg">
+                        {{ contact_info.email }}
+                    </a>
+                    <p class="text-gray-600 mt-2">Send us an email for general inquiries, enrollment questions, or program information.</p>
+                </div>
+
+                <div class="bg-green-50 rounded-lg p-6">
+                    <div class="flex items-center mb-3">
+                        <i class="fas fa-phone text-green-600 text-xl mr-4"></i>
+                        <h3 class="text-lg font-semibold text-gray-800">Phone</h3>
+                    </div>
+                    <a href="tel:{{ contact_info.phone }}" class="text-green-600 hover:text-green-700 font-medium text-lg">
+                        {{ contact_info.phone }}
+                    </a>
+                    <p class="text-gray-600 mt-2">Call us directly to speak with our team about program enrollment and scheduling.</p>
+                </div>
+
+                <div class="bg-purple-50 rounded-lg p-6">
+                    <div class="flex items-center mb-3">
+                        <i class="fas fa-clock text-purple-600 text-xl mr-4"></i>
+                        <h3 class="text-lg font-semibold text-gray-800">Office Hours</h3>
+                    </div>
+                    <div class="text-gray-700">
+                        <p class="font-medium">Monday - Friday: 9:00 AM - 6:00 PM</p>
+                        <p class="font-medium">Saturday: 9:00 AM - 4:00 PM</p>
+                        <p class="font-medium">Sunday: Closed</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-8">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">Quick Actions</h3>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="mailto:{{ contact_info.email }}" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors font-medium text-center">
+                        <i class="fas fa-envelope mr-2"></i>Send Email
+                    </a>
+                    <a href="tel:{{ contact_info.phone }}" class="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors font-medium text-center">
+                        <i class="fas fa-phone mr-2"></i>Call Now
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <h2 class="text-3xl font-bold text-gray-800 mb-8">Program Locations</h2>
+            
+            <div class="space-y-6">
+                <div class="bg-pink-50 rounded-lg p-6">
+                    <div class="flex items-center mb-3">
+                        <i class="fas fa-palette text-pink-600 text-xl mr-3"></i>
+                        <h3 class="text-lg font-semibold text-gray-800">Art Classes</h3>
+                    </div>
+                    <p class="text-gray-700 font-medium">908 Harmon Dr, Menlo Park, CA 94025, USA</p>
+                    <a href="{{ url_for('art') }}" class="text-pink-600 hover:text-pink-700 font-medium mt-2 inline-block">
+                        View Art Program Details →
+                    </a>
+                </div>
+
+                <div class="bg-green-50 rounded-lg p-6">
+                    <div class="flex items-center mb-3">
+                        <i class="fas fa-soccer-ball text-green-600 text-xl mr-3"></i>
+                        <h3 class="text-lg font-semibold text-gray-800">Soccer Classes</h3>
+                    </div>
+                    <p class="text-gray-700">Multiple locations across Palo Alto area</p>
+                    <a href="{{ url_for('soccer') }}" class="text-green-600 hover:text-green-700 font-medium mt-2 inline-block">
+                        View Soccer Locations & Schedule →
+                    </a>
+                </div>
+
+                <div class="bg-purple-50 rounded-lg p-6">
+                    <div class="flex items-center mb-3">
+                        <i class="fas fa-child text-purple-600 text-xl mr-3"></i>
+                        <h3 class="text-lg font-semibold text-gray-800">Gymnastics</h3>
+                    </div>
+                    <p class="text-gray-700 font-medium">Arrillaga Family Gymnastics Center</p>
+                    <a href="{{ url_for('gymnastics') }}" class="text-purple-600 hover:text-purple-700 font-medium mt-2 inline-block">
+                        View Gymnastics Program →
+                    </a>
+                </div>
+
+                <div class="bg-orange-50 rounded-lg p-6">
+                    <div class="flex items-center mb-3">
+                        <i class="fas fa-basketball-ball text-orange-600 text-xl mr-3"></i>
+                        <h3 class="text-lg font-semibold text-gray-800">Basketball</h3>
+                    </div>
+                    <p class="text-gray-700">Fairmeadow Elementary School & Menlo Park Sports Center</p>
+                    <a href="{{ url_for('basketball') }}" class="text-orange-600 hover:text-orange-700 font-medium mt-2 inline-block">
+                        View Basketball Program →
+                    </a>
+                </div>
+
+                <div class="bg-blue-50 rounded-lg p-6">
+                    <div class="flex items-center mb-3">
+                        <i class="fas fa-swimmer text-blue-600 text-xl mr-3"></i>
+                        <h3 class="text-lg font-semibold text-gray-800">Swimming</h3>
+                    </div>
+                    <p class="text-gray-700 font-medium">Cubberley Community Center</p>
+                    <a href="{{ url_for('swimming') }}" class="text-blue-600 hover:text-blue-700 font-medium mt-2 inline-block">
+                        View Swimming Program →
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+        <div class="text-center bg-white rounded-xl p-8 shadow-lg">
+            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <i class="fas fa-question-circle text-blue-600 text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-3">Have Questions?</h3>
+            <p class="text-gray-600 mb-4">
+                We're here to help! Contact us with any questions about our programs, scheduling, or enrollment.
+            </p>
+            <a href="mailto:{{ contact_info.email }}" class="text-blue-600 hover:text-blue-700 font-medium">
+                Ask a Question →
+            </a>
+        </div>
+
+        <div class="text-center bg-white rounded-xl p-8 shadow-lg">
+            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <i class="fas fa-calendar-check text-green-600 text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-3">Ready to Enroll?</h3>
+            <p class="text-gray-600 mb-4">
+                Start your child's journey with us today. We offer flexible enrollment options and personalized programs.
+            </p>
+            <a href="tel:{{ contact_info.phone }}" class="text-green-600 hover:text-green-700 font-medium">
+                Enroll Now →
+            </a>
+        </div>
+
+        <div class="text-center bg-white rounded-xl p-8 shadow-lg">
+            <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <i class="fas fa-info-circle text-purple-600 text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-3">Learn More</h3>
+            <p class="text-gray-600 mb-4">
+                Explore our comprehensive programs designed for different ages and interests throughout the Bay Area.
+            </p>
+            <a href="{{ url_for('programs') }}" class="text-purple-600 hover:text-purple-700 font-medium">
+                View Programs →
+            </a>
+        </div>
+    </div>
+
+    <div class="bg-gradient-to-r from-teal-600 to-blue-700 rounded-xl p-8 text-white text-center" style="background: linear-gradient(to right, #0d9488, #1d4ed8);">
+        <h2 class="text-3xl font-bold mb-4">We'd Love to Hear From You!</h2>
+        <p class="text-xl mb-6 text-teal-100">
+            Whether you're interested in our regular programs or summer camp, we're here to help you find the perfect fit for your child.
+        </p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+            <div class="bg-teal-800 rounded-lg p-6">
+                <h3 class="text-xl font-bold mb-2">
+                    <i class="fas fa-graduation-cap mr-2"></i>
+                    Regular Programs
+                </h3>
+                <p class="text-teal-200 mb-4">Year-round enrichment activities including soccer, art, gymnastics, basketball, and swimming.</p>
+                <a href="{{ url_for('programs') }}" class="bg-white text-teal-600 px-4 py-2 rounded font-medium hover:bg-teal-50 transition-colors" style="background-color: white; color: #0d9488;">
+                    View Programs
+                </a>
+            </div>
+            <div class="bg-blue-800 rounded-lg p-6">
+                <h3 class="text-xl font-bold mb-2">
+                    <i class="fas fa-campground mr-2"></i>
+                    Summer Camp
+                </h3>
+                <p class="text-blue-200 mb-4">Full-day camp experience with diverse activities, meals included, and flexible scheduling options.</p>
+                <a href="{{ url_for('summer_camp') }}" class="bg-white text-blue-600 px-4 py-2 rounded font-medium hover:bg-blue-50 transition-colors" style="background-color: white; color: #2563eb;">
+                    Learn More
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

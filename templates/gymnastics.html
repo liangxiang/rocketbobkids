@@ -1,0 +1,189 @@
+{% extends "base.html" %}
+
+{% block title %}{{ gymnastics_info.title }} - RocketBobKids{% endblock %}
+
+{% block content %}
+<div class="bg-gradient-to-r from-purple-600 to-indigo-700 text-white py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center mb-6">
+            <a href="{{ url_for('programs') }}" class="text-white hover:text-purple-200 mr-4 transition-colors">
+                <i class="fas fa-arrow-left text-xl"></i>
+            </a>
+            <div>
+                <h1 class="text-4xl font-bold mb-2">{{ gymnastics_info.title }}</h1>
+                <p class="text-purple-100">All Ages Welcome</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+        <div>
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">About Our Program</h2>
+            <p class="text-gray-700 mb-6 text-lg leading-relaxed">
+                {{ gymnastics_info.description }}
+            </p>
+
+            <div class="bg-purple-50 rounded-xl p-6">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">
+                    <i class="fas fa-map-marker-alt text-purple-600 mr-2"></i>
+                    Location
+                </h3>
+                <p class="text-gray-700 font-medium">{{ gymnastics_info.location }}</p>
+                <p class="text-gray-600 mt-2">
+                    Our state-of-the-art facility provides a safe and inspiring environment for gymnasts of all levels.
+                </p>
+            </div>
+        </div>
+
+        <div>
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Why Choose Our Gymnastics?</h2>
+            <div class="space-y-4">
+                <div class="bg-blue-50 rounded-lg p-4">
+                    <div class="flex items-start">
+                        <i class="fas fa-star text-blue-600 mr-3 mt-1"></i>
+                        <div>
+                            <h4 class="font-semibold text-gray-800">Diverse Programs</h4>
+                            <p class="text-gray-700">Classes for every age group from toddlers to teens</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-green-50 rounded-lg p-4">
+                    <div class="flex items-start">
+                        <i class="fas fa-users text-green-600 mr-3 mt-1"></i>
+                        <div>
+                            <h4 class="font-semibold text-gray-800">Family Bonding</h4>
+                            <p class="text-gray-700">Parent-child classes for early development</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-purple-50 rounded-lg p-4">
+                    <div class="flex items-start">
+                        <i class="fas fa-medal text-purple-600 mr-3 mt-1"></i>
+                        <div>
+                            <h4 class="font-semibold text-gray-800">Skill Progression</h4>
+                            <p class="text-gray-700">Structured advancement through skill levels</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-orange-50 rounded-lg p-4">
+                    <div class="flex items-start">
+                        <i class="fas fa-heart text-orange-600 mr-3 mt-1"></i>
+                        <div>
+                            <h4 class="font-semibold text-gray-800">Specialty Programs</h4>
+                            <p class="text-gray-700">Aerial arts, strength training, and creative movement</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-gray-50 rounded-xl p-8 mb-16">
+        <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Our Programs</h2>
+        
+        <div class="space-y-8">
+            {% for program in gymnastics_info.programs %}
+            <div class="bg-white rounded-lg p-6 shadow-md">
+                <div class="flex items-center mb-4">
+                    <div class="w-12 h-12 bg-gradient-to-r from-purple-500 to-indigo-600 rounded-full flex items-center justify-center text-white text-lg">
+                        <i class="fas fa-child"></i>
+                    </div>
+                    <div class="ml-4">
+                        <h3 class="text-xl font-bold text-gray-800">{{ program.category }}</h3>
+                        <p class="text-purple-600 font-medium">{{ program.classes|join(', ') }}</p>
+                    </div>
+                </div>
+                <p class="text-gray-700 leading-relaxed">{{ program.description }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="mb-16">
+        <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Specialty Programs</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-gradient-to-br from-pink-500 to-purple-600 rounded-lg p-6 text-white">
+                <div class="flex items-center mb-4">
+                    <i class="fas fa-magic text-2xl mr-3"></i>
+                    <h3 class="text-xl font-bold">Aerial Arts</h3>
+                </div>
+                <p class="text-pink-100">
+                    Silks, Trapeze, and Aerial Arts: Explore the thrill of aerial gymnastics with our captivating classes.
+                </p>
+            </div>
+
+            <div class="bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg p-6 text-white">
+                <div class="flex items-center mb-4">
+                    <i class="fas fa-dumbbell text-2xl mr-3"></i>
+                    <h3 class="text-xl font-bold">Strength & Flexibility</h3>
+                </div>
+                <p class="text-blue-100">
+                    Stretch and Strength Program: Focus on flexibility and physical conditioning to enhance overall performance.
+                </p>
+            </div>
+
+            <div class="bg-gradient-to-br from-green-500 to-teal-600 rounded-lg p-6 text-white">
+                <div class="flex items-center mb-4">
+                    <i class="fas fa-running text-2xl mr-3"></i>
+                    <h3 class="text-xl font-bold">Creative Movement</h3>
+                </div>
+                <p class="text-green-100">
+                    Exploration Through Movement: A unique class encouraging creativity and self-expression through diverse movement techniques.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+        <div class="bg-purple-50 rounded-xl p-8">
+            <h3 class="text-2xl font-bold text-gray-800 mb-4">
+                <i class="fas fa-baby text-purple-600 mr-2"></i>
+                Early Development
+            </h3>
+            <p class="text-gray-700 mb-4">
+                Our Kindergym and KinderStars classes invite caregivers and children to participate together, 
+                fostering bonding and early development through interactive activities.
+            </p>
+            <ul class="space-y-2 text-gray-700">
+                <li><i class="fas fa-check text-green-500 mr-2"></i>Parent-child bonding activities</li>
+                <li><i class="fas fa-check text-green-500 mr-2"></i>Early motor skill development</li>
+                <li><i class="fas fa-check text-green-500 mr-2"></i>Fun, interactive environment</li>
+            </ul>
+        </div>
+
+        <div class="bg-indigo-50 rounded-xl p-8">
+            <h3 class="text-2xl font-bold text-gray-800 mb-4">
+                <i class="fas fa-trophy text-indigo-600 mr-2"></i>
+                Skill Advancement
+            </h3>
+            <p class="text-gray-700 mb-4">
+                For children ages 3-6, we offer NewStars, MiniStars, and SuperStars classes, 
+                each designed to nurture independent participation and skill-building in a supportive environment.
+            </p>
+            <ul class="space-y-2 text-gray-700">
+                <li><i class="fas fa-check text-green-500 mr-2"></i>Age-appropriate skill progression</li>
+                <li><i class="fas fa-check text-green-500 mr-2"></i>Independent participation encouraged</li>
+                <li><i class="fas fa-check text-green-500 mr-2"></i>Supportive learning environment</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="text-center bg-gradient-to-r from-purple-600 to-indigo-700 rounded-xl p-8 text-white">
+        <h2 class="text-3xl font-bold mb-4">Start Your Gymnastics Journey!</h2>
+        <p class="text-xl mb-6 text-purple-100">
+            Experience a dynamic and enriching gymnastics journey that caters to every skill level and interest
+        </p>
+        <div class="flex flex-col sm:flex-row justify-center gap-4">
+            <a href="mailto:RocketBobKids02@gmail.com" class="bg-white text-purple-600 px-8 py-3 rounded-lg hover:bg-gray-100 transition-colors font-medium">
+                <i class="fas fa-envelope mr-2"></i>Join Our Program
+            </a>
+            <a href="tel:(650) 569-1741" class="bg-purple-800 text-white px-8 py-3 rounded-lg hover:bg-purple-900 transition-colors font-medium">
+                <i class="fas fa-phone mr-2"></i>Call (650) 569-1741
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

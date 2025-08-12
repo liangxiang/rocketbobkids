@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+
+{% block title %}{{ soccer_info.title }} - RocketBobKids{% endblock %}
+
+{% block content %}
+<div class="bg-gradient-to-r from-green-600 to-blue-700 text-white py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center mb-6">
+            <a href="{{ url_for('programs') }}" class="text-white hover:text-green-200 mr-4 transition-colors">
+                <i class="fas fa-arrow-left text-xl"></i>
+            </a>
+            <div>
+                <h1 class="text-4xl font-bold mb-2">{{ soccer_info.title }}</h1>
+                <p class="text-green-100">All Ages Welcome</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+        <div>
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">About Our Soccer Program</h2>
+            <p class="text-gray-700 mb-6 text-lg leading-relaxed">
+                {{ soccer_info.description }}
+            </p>
+            
+            <h3 class="text-2xl font-bold text-gray-800 mb-4">Program Benefits</h3>
+            <div class="space-y-4">
+                {% for benefit in soccer_info.benefits %}
+                <div class="bg-green-50 rounded-lg p-4">
+                    <div class="flex items-start">
+                        <i class="fas fa-soccer-ball text-green-600 mr-3 mt-1"></i>
+                        <p class="text-gray-700 font-medium">{{ benefit }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div>
+            <div class="bg-blue-50 rounded-xl p-8">
+                <h3 class="text-2xl font-bold text-gray-800 mb-6">Key Features</h3>
+                <div class="space-y-4">
+                    {% for feature in soccer_info.features %}
+                    <div class="flex items-start">
+                        <i class="fas fa-check-circle text-blue-600 mr-3 mt-1"></i>
+                        <p class="text-gray-700">{{ feature }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+                
+                <div class="mt-8 bg-green-100 rounded-lg p-6">
+                    <h4 class="text-lg font-semibold text-gray-800 mb-3">
+                        <i class="fas fa-shield-alt text-green-600 mr-2"></i>
+                        Safety & Support
+                    </h4>
+                    <p class="text-gray-700 mb-3">
+                        After school, our coaches will supervise and assist players with their soccer gear, ensuring a smooth transition to practice time.
+                    </p>
+                    <p class="text-gray-700">
+                        If classes are missed due to weather conditions (rain, excessive heat, or poor air quality), they will be rescheduled at the end of the season.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-gray-50 rounded-xl p-8 mb-16">
+        <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Fall 2024 Soccer Classes Schedule</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {% for class in soccer_info.schedule %}
+            <div class="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow border-l-4 border-green-500">
+                <div class="flex items-center mb-4">
+                    <i class="fas fa-map-marker-alt text-green-600 text-xl mr-3"></i>
+                    <h3 class="text-lg font-bold text-gray-800">{{ class.location }}</h3>
+                </div>
+                <div class="flex items-center text-gray-600">
+                    <i class="fas fa-clock text-blue-600 mr-3"></i>
+                    <p class="font-medium">{{ class.time }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <div class="mt-8 bg-yellow-50 rounded-lg p-6">
+            <h3 class="text-lg font-semibold text-gray-800 mb-3">
+                <i class="fas fa-info-circle text-yellow-600 mr-2"></i>
+                Additional Information
+            </h3>
+            <ul class="space-y-2 text-gray-700">
+                <li><i class="fas fa-check text-green-500 mr-2"></i>Coaches will stay on-site to supervise children who cannot be picked up immediately</li>
+                <li><i class="fas fa-check text-green-500 mr-2"></i>Age-appropriate instruction for all skill levels</li>
+                <li><i class="fas fa-check text-green-500 mr-2"></i>Focus on fun while building soccer fundamentals</li>
+                <li><i class="fas fa-check text-green-500 mr-2"></i>Equipment provided</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="text-center bg-gradient-to-r from-green-600 to-blue-700 rounded-xl p-8 text-white">
+        <h2 class="text-3xl font-bold mb-4">Join Our Soccer Family!</h2>
+        <p class="text-xl mb-6 text-green-100">
+            Experience skill development, creativity, and fun in a supportive environment
+        </p>
+        <div class="flex flex-col sm:flex-row justify-center gap-4">
+            <a href="mailto:RocketBobKids02@gmail.com" class="bg-white text-green-600 px-8 py-3 rounded-lg hover:bg-gray-100 transition-colors font-medium">
+                <i class="fas fa-envelope mr-2"></i>Register Now
+            </a>
+            <a href="tel:(650) 569-1741" class="bg-green-800 text-white px-8 py-3 rounded-lg hover:bg-green-900 transition-colors font-medium">
+                <i class="fas fa-phone mr-2"></i>Call (650) 569-1741
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

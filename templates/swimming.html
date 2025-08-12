@@ -1,0 +1,176 @@
+{% extends "base.html" %}
+
+{% block title %}{{ swimming_info.title }} - RocketBobKids{% endblock %}
+
+{% block content %}
+<div class="bg-gradient-to-r from-blue-600 to-teal-700 text-white py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center mb-6">
+            <a href="{{ url_for('programs') }}" class="text-white hover:text-blue-200 mr-4 transition-colors">
+                <i class="fas fa-arrow-left text-xl"></i>
+            </a>
+            <div>
+                <h1 class="text-4xl font-bold mb-2">{{ swimming_info.title }}</h1>
+                <p class="text-blue-100">{{ swimming_info.age_range }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+        <div>
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Our Swimming Philosophy</h2>
+            <p class="text-gray-700 mb-6 text-lg leading-relaxed">
+                {{ swimming_info.description }}
+            </p>
+            
+            <div class="bg-blue-50 rounded-xl p-6 mb-6">
+                <h3 class="text-xl font-bold text-gray-800 mb-3">
+                    <i class="fas fa-heart text-blue-600 mr-2"></i>
+                    Our Belief
+                </h3>
+                <p class="text-gray-700 leading-relaxed">{{ swimming_info.philosophy }}</p>
+            </div>
+
+            <div class="bg-teal-50 rounded-xl p-6">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">
+                    <i class="fas fa-map-marker-alt text-teal-600 mr-2"></i>
+                    Location
+                </h3>
+                <p class="text-gray-700 font-medium">{{ swimming_info.location }}</p>
+                <p class="text-gray-600 mt-2">
+                    Our facility provides a safe, clean, and welcoming environment for swimmers of all levels.
+                </p>
+            </div>
+        </div>
+
+        <div>
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Program Features</h2>
+            <div class="space-y-4">
+                {% for feature in swimming_info.features %}
+                <div class="bg-blue-50 rounded-lg p-4">
+                    <div class="flex items-start">
+                        <i class="fas fa-swimmer text-blue-600 mr-3 mt-1"></i>
+                        <p class="text-gray-700 font-medium">{{ feature }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="mt-8 bg-yellow-50 rounded-lg p-6">
+                <h4 class="text-lg font-semibold text-gray-800 mb-3">
+                    <i class="fas fa-star text-yellow-600 mr-2"></i>
+                    Instructor Excellence
+                </h4>
+                <p class="text-gray-700">
+                    Each instructor brings a unique background in swimming, offering diverse perspectives and techniques, 
+                    so you can find the perfect fit for your individual needs.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-gray-50 rounded-xl p-8 mb-16">
+        <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Programs for Every Age</h2>
+        
+        <div class="space-y-8">
+            {% for program in swimming_info.programs %}
+            <div class="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow">
+                <div class="flex items-center mb-4">
+                    <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-teal-600 rounded-full flex items-center justify-center text-white text-2xl">
+                        <i class="fas fa-swimmer"></i>
+                    </div>
+                    <div class="ml-4">
+                        <h3 class="text-2xl font-bold text-gray-800">{{ program.category }}</h3>
+                        <p class="text-blue-600 font-medium">{{ program.age }}</p>
+                    </div>
+                </div>
+                <p class="text-gray-700 leading-relaxed">{{ program.description }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+        <div class="text-center bg-white rounded-xl p-8 shadow-lg">
+            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <i class="fas fa-shield-alt text-blue-600 text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-3">Safety First</h3>
+            <p class="text-gray-600">
+                Our swim program prioritizes safety above all else, ensuring a secure learning environment for all participants.
+            </p>
+        </div>
+
+        <div class="text-center bg-white rounded-xl p-8 shadow-lg">
+            <div class="w-16 h-16 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <i class="fas fa-trophy text-teal-600 text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-3">Build Confidence</h3>
+            <p class="text-gray-600">
+                We foster confidence in the water, helping swimmers develop skills and overcome any water-related anxieties.
+            </p>
+        </div>
+
+        <div class="text-center bg-white rounded-xl p-8 shadow-lg">
+            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <i class="fas fa-users text-green-600 text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-3">Community</h3>
+            <p class="text-gray-600">
+                Join a supportive swimming community where every participant can thrive and achieve their goals.
+            </p>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+        <div class="bg-blue-50 rounded-xl p-8">
+            <h3 class="text-2xl font-bold text-gray-800 mb-4">
+                <i class="fas fa-baby text-blue-600 mr-2"></i>
+                Early Water Introduction
+            </h3>
+            <p class="text-gray-700 mb-4">
+                We welcome infants as young as 6 months old for gentle water introduction with parent participation. 
+                Early exposure to water helps build comfort and safety awareness.
+            </p>
+            <ul class="space-y-2 text-gray-700">
+                <li><i class="fas fa-check text-green-500 mr-2"></i>Parent-child bonding in water</li>
+                <li><i class="fas fa-check text-green-500 mr-2"></i>Gentle introduction to water safety</li>
+                <li><i class="fas fa-check text-green-500 mr-2"></i>Foundation for future swimming skills</li>
+            </ul>
+        </div>
+
+        <div class="bg-teal-50 rounded-xl p-8">
+            <h3 class="text-2xl font-bold text-gray-800 mb-4">
+                <i class="fas fa-graduation-cap text-teal-600 mr-2"></i>
+                Adult Learning
+            </h3>
+            <p class="text-gray-700 mb-4">
+                It's never too late to learn to swim! Our adult programs cater to beginners who are learning for the first time 
+                and experienced swimmers looking to refine their technique.
+            </p>
+            <ul class="space-y-2 text-gray-700">
+                <li><i class="fas fa-check text-green-500 mr-2"></i>Beginner-friendly environment</li>
+                <li><i class="fas fa-check text-green-500 mr-2"></i>Technique refinement for experienced swimmers</li>
+                <li><i class="fas fa-check text-green-500 mr-2"></i>Flexible scheduling options</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="text-center bg-gradient-to-r from-blue-600 to-teal-700 rounded-xl p-8 text-white">
+        <h2 class="text-3xl font-bold mb-4">Dive Into Learning!</h2>
+        <p class="text-xl mb-6 text-blue-100">
+            Experience a swim program that prioritizes safety, fosters confidence, and helps swimmers develop their skills in a supportive environment
+        </p>
+        <div class="flex flex-col sm:flex-row justify-center gap-4">
+            <a href="mailto:RocketBobKids02@gmail.com" class="bg-white text-blue-600 px-8 py-3 rounded-lg hover:bg-gray-100 transition-colors font-medium">
+                <i class="fas fa-envelope mr-2"></i>Start Swimming
+            </a>
+            <a href="tel:(650) 569-1741" class="bg-blue-800 text-white px-8 py-3 rounded-lg hover:bg-blue-900 transition-colors font-medium">
+                <i class="fas fa-phone mr-2"></i>Call (650) 569-1741
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

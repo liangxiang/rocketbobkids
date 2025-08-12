@@ -1,0 +1,143 @@
+{% extends "base.html" %}
+
+{% block title %}{{ camp_info.title }} - RocketBobKids{% endblock %}
+
+{% block content %}
+<div class="bg-gradient-to-r from-orange-600 to-pink-600 text-white py-16" style="background: linear-gradient(to right, #ea580c, #db2777);">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h1 class="text-4xl font-bold mb-4">{{ camp_info.title }}</h1>
+        <p class="text-xl text-orange-100 mb-2">{{ camp_info.subtitle }}</p>
+        <p class="text-lg text-orange-200">{{ camp_info.description }}</p>
+    </div>
+</div>
+
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+        <div>
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Camp Details</h2>
+            <div class="space-y-6">
+                <div class="bg-blue-50 rounded-lg p-6">
+                    <div class="flex items-center mb-3">
+                        <i class="fas fa-clock text-blue-600 text-xl mr-3"></i>
+                        <h3 class="text-lg font-semibold text-gray-800">Schedule</h3>
+                    </div>
+                    <p class="text-gray-700">{{ camp_info.schedule }}</p>
+                </div>
+
+                <div class="bg-green-50 rounded-lg p-6">
+                    <div class="flex items-center mb-3">
+                        <i class="fas fa-dollar-sign text-green-600 text-xl mr-3"></i>
+                        <h3 class="text-lg font-semibold text-gray-800">Pricing</h3>
+                    </div>
+                    <p class="text-gray-700">{{ camp_info.price }}</p>
+                    <p class="text-sm text-gray-600 mt-2">Flexible scheduling - select the weeks and days that work best for you</p>
+                </div>
+
+                <div class="bg-purple-50 rounded-lg p-6">
+                    <div class="flex items-center mb-3">
+                        <i class="fas fa-users text-purple-600 text-xl mr-3"></i>
+                        <h3 class="text-lg font-semibold text-gray-800">Age Range</h3>
+                    </div>
+                    <p class="text-gray-700">Grades K-10 (Co-educational)</p>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">What Makes Us Special</h2>
+            <div class="space-y-4">
+                {% for feature in camp_info.special_features %}
+                <div class="flex items-start">
+                    <i class="fas fa-star text-yellow-500 mr-3 mt-1"></i>
+                    <p class="text-gray-700">{{ feature }}</p>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="mt-8 bg-orange-50 rounded-lg p-6">
+                <h3 class="text-lg font-semibold text-gray-800 mb-3">Camp Philosophy</h3>
+                <p class="text-gray-700">
+                    We believe a high-quality summer camp experience fosters learning, growth, accomplishment, and a sense of belonging. 
+                    Our supportive environment offers children a safe and enjoyable space to build independence and form lasting friendships.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-gray-50 rounded-xl p-8 mb-16">
+        <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Daily Activities</h2>
+        
+        <div class="mb-8">
+            <h3 class="text-xl font-semibold text-gray-800 mb-4">Traditional Camp Activities</h3>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                {% for activity in camp_info.activities %}
+                <div class="bg-white rounded-lg p-4 text-center shadow-sm hover:shadow-md transition-shadow">
+                    <p class="font-medium text-gray-800">{{ activity }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="bg-yellow-50 rounded-lg p-6">
+            <h3 class="text-lg font-semibold text-gray-800 mb-3">
+                <i class="fas fa-calendar-star text-yellow-600 mr-2"></i>
+                Special Wednesday Activities
+            </h3>
+            <p class="text-gray-700">
+                Every Wednesday afternoon, we introduce exciting special activities like rock wall climbing, 
+                giant slip n' slide, spa sessions, or launching water rockets—giving campers new experiences to enjoy each week.
+            </p>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+        <div class="bg-blue-50 rounded-xl p-8">
+            <h3 class="text-2xl font-bold text-gray-800 mb-4">
+                <i class="fas fa-utensils text-blue-600 mr-2"></i>
+                Meals & Nutrition
+            </h3>
+            <p class="text-gray-700 mb-4">
+                Each day includes a nutritious lunch and healthy snack. Our varied menu features:
+            </p>
+            <ul class="space-y-2 text-gray-700">
+                <li><i class="fas fa-check text-green-500 mr-2"></i>Hot options: ravioli, chicken ciabatta, roast beef, lasagna, fajitas</li>
+                <li><i class="fas fa-check text-green-500 mr-2"></i>Fresh salad bar</li>
+                <li><i class="fas fa-check text-green-500 mr-2"></i>Sandwich station</li>
+                <li><i class="fas fa-check text-green-500 mr-2"></i>Pasta bar and baked potato bar</li>
+            </ul>
+        </div>
+
+        <div class="bg-green-50 rounded-xl p-8">
+            <h3 class="text-2xl font-bold text-gray-800 mb-4">
+                <i class="fas fa-child text-green-600 mr-2"></i>
+                Daily Structure
+            </h3>
+            <p class="text-gray-700 mb-4">
+                Campers participate in six one-hour activity sessions daily:
+            </p>
+            <ul class="space-y-2 text-gray-700">
+                <li><i class="fas fa-users text-blue-500 mr-2"></i><strong>2 Group Activities</strong> with assigned camper groups</li>
+                <li><i class="fas fa-hand-pointer text-purple-500 mr-2"></i><strong>4 "Free Choice"</strong> activities that campers select themselves</li>
+            </ul>
+            <p class="text-gray-700 mt-4">
+                This format allows campers to design their own schedule while ensuring structured group interaction and skill development.
+            </p>
+        </div>
+    </div>
+
+    <div class="text-center bg-gradient-to-r from-orange-600 to-pink-600 rounded-xl p-8 text-white" style="background: linear-gradient(to right, #ea580c, #db2777);">
+        <h2 class="text-3xl font-bold mb-4">Ready to Join the Fun?</h2>
+        <p class="text-xl mb-6 text-orange-100">
+            Give your child memories that will last a lifetime at RocketBobKids Summer Camp
+        </p>
+        <div class="flex flex-col sm:flex-row justify-center gap-4">
+            <a href="mailto:RocketBobKids02@gmail.com" class="bg-white text-orange-600 px-8 py-3 rounded-lg hover:bg-orange-50 transition-colors font-medium" style="background-color: white; color: #ea580c;">
+                <i class="fas fa-envelope mr-2"></i>Enroll Now
+            </a>
+            <a href="tel:(650) 569-1741" class="bg-orange-800 text-white px-8 py-3 rounded-lg hover:bg-orange-900 transition-colors font-medium">
+                <i class="fas fa-phone mr-2"></i>Call (650) 569-1741
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
