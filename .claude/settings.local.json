@@ -5,7 +5,9 @@
       "Bash(pip install:*)",
       "Bash(python:*)",
       "Bash(rmdir:*)",
-      "Bash(find:*)"
+      "Bash(find:*)",
+      "Bash(pkill:*)",
+      "Bash(taskkill:*)"
     ],
     "deny": []
   }
